@@ -1,0 +1,54 @@
+/* Carousel transitions */
+.carousel-slide {
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  /* Custom animations */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  .fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  /* Card hover effects */
+  .product-card {
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Image zoom effect */
+  .image-container {
+    overflow: hidden;
+  }
+  
+  .zoom-image {
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .zoom-image:hover {
+    transform: scale(1.1);
+  }
+  
+  /* Button hover effects */
+  .hover-button {
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .hover-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .carousel-content {
+      padding: 2rem 1rem;
+    }
+  }

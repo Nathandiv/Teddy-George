@@ -1,47 +1,85 @@
 <nav class="bg-white shadow-lg relative">
-    <div class="max-w-6xl mx-auto px-4">
-      <div class="flex justify-between items-center relative">
-        
-        <!-- Logo -->
-        <div class="flex space-x-7">
-          <a href="#" class="flex items-center py-4">
-            <span class="font-semibold text-gray-500 text-lg">TP 2</span>
-          </a>
-        </div>
-  
-        <!-- Centered Navigation -->
-        <div class="hidden md:flex absolute inset-x-0 top-1/2 transform -translate-y-1/2 justify-center">
-          <div class="flex space-x-4">
-            <a href="#" class="py-4 px-3 text-gray-500 hover:text-green-500 transition duration-300">Home</a>
-            <a href="#" class="py-4 px-3 text-gray-500 hover:text-green-500 transition duration-300">Shop</a>
-            <a href="#" class="py-4 px-3 text-gray-500 hover:text-green-500 transition duration-300">About</a>
-            <a href="#" class="py-4 px-3 text-gray-500 hover:text-green-500 transition duration-300">Contact</a>
-          </div>
-        </div>
-  
-        <!-- Mobile Menu Button -->
-        <div class="md:hidden flex items-center">
-          <button class="outline-none mobile-menu-button" (click)="toggleMenu()">
-            <svg class="w-6 h-6 text-gray-500 hover:text-green-500"
-              fill="none"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              viewBox="0 0 24 24"
-              stroke="currentColor">
-              <path d="M4 6h16M4 12h16M4 18h16"></path>
-            </svg>
-          </button>
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="flex justify-between items-center relative">
+      <!-- Logo -->
+      <div class="flex space-x-7">
+        <a href="#" class="flex items-center py-4">
+          <!-- <img src="https://i.pinimg.com/474x/41/b6/6c/41b66ce4aa59e8152f64e898434013a8.jpg" class="h-10" alt="Flowbite Logo" /> -->
+          <span class="font-semibold text-gray-500 t"
+          style="font-size: 23px"
+          >TP2</span>
+        </a>
+      </div>
+
+      <!-- Centered Navigation -->
+      <div
+        class="hidden md:flex absolute inset-x-0 top-1/2 transform -translate-y-1/2 justify-center"
+        style="font-size: 23px"
+      >
+        <div class="flex space-x-4">
+          <a
+            href="#"
+            class="py-4 px-3 text-gray-500 hover:text-green-500 transition duration-300"
+            >Home</a
+          >
+          <a
+            href="#"
+            class="py-4 px-3 text-gray-500 hover:text-green-500 transition duration-300"
+            >Shop</a
+          >
+          <a
+            href="#"
+            class="py-4 px-3 text-gray-500 hover:text-green-500 transition duration-300"
+            >About</a
+          >
+          <a
+            href="#"
+            class="py-4 px-3 text-gray-500 hover:text-green-500 transition duration-300"
+            >Contact</a
+          >
         </div>
       </div>
-  
-      <!-- Mobile Menu -->
-      <div [class.hidden]="!isMenuOpen" class="md:hidden">
-        <a href="#" class="block py-2 px-4 text-sm hover:bg-green-500 hover:text-white transition duration-300">Home</a>
-        <a href="#" class="block py-2 px-4 text-sm hover:bg-green-500 hover:text-white transition duration-300">Shop</a>
-        <a href="#" class="block py-2 px-4 text-sm hover:bg-green-500 hover:text-white transition duration-300">About</a>
-        <a href="#" class="block py-2 px-4 text-sm hover:bg-green-500 hover:text-white transition duration-300">Contact</a>
+
+      <!-- Mobile Menu Button -->
+      <div class="md:hidden flex items-center">
+        <button class="outline-none mobile-menu-button" (click)="toggleMenu()">
+          <svg
+            class="w-6 h-6 text-gray-500 hover:text-green-500"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
       </div>
     </div>
-  </nav>
-  
+
+    <!-- Mobile Menu -->
+    <div [class.hidden]="!isMenuOpen" class="md:hidden">
+      <a
+        href="#"
+        class="block py-2 px-4 text-sm hover:bg-green-500 hover:text-white transition duration-300"
+        >Home</a
+      >
+      <a
+        href="#"
+        class="block py-2 px-4 text-sm hover:bg-green-500 hover:text-white transition duration-300"
+        >Shop</a
+      >
+      <a
+        href="#"
+        class="block py-2 px-4 text-sm hover:bg-green-500 hover:text-white transition duration-300"
+        >About</a
+      >
+      <a
+        href="#"
+        class="block py-2 px-4 text-sm hover:bg-green-500 hover:text-white transition duration-300"
+        >Contact</a
+      >
+    </div>
+  </div>
+</nav>

@@ -1,1 +1,108 @@
 <app-navbar></app-navbar>
+<div class="relative w-full overflow-hidden">
+    <!-- Carousel container -->
+    <div class="relative">
+      <!-- Carousel slides -->
+      <div class="relative flex transition-transform duration-500 ease-in-out transform" 
+           [style.transform]="'translateX(-' + (currentSlide * 100) + '%)'">
+        
+        <!-- Dynamic Slides -->
+        <div *ngFor="let slide of carouselSlides" class="min-w-full relative">
+          <div class="flex flex-col md:flex-row items-center px-4 md:px-12 py-8 md:py-16 bg-gradient-to-r from-gray-100 to-gray-200">
+            <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+              <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-800">{{ slide.title }}</h2>
+              <h3 class="text-xl md:text-2xl text-gray-600 mb-4">{{ slide.subtitle }}</h3>
+              <p class="text-gray-700 mb-6">{{ slide.description }}</p>
+              <button class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg transition-all duration-300 transform hover:scale-105">
+                Shop Now
+              </button>
+            </div>
+            <div class="md:w-1/2 transform hover:scale-105 transition-transform duration-300">
+              <img [src]="slide.image" 
+                   [alt]="slide.alt" 
+                   class="rounded-lg shadow-2xl w-full">
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Navigation arrows -->
+      <button (click)="previousSlide()" 
+              class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white/80 p-3 rounded-r-lg shadow-md hover:bg-green-500 hover:text-white transition-all duration-300">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+        </svg>
+      </button>
+      <button (click)="nextSlide()" 
+              class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white/80 p-3 rounded-l-lg shadow-md hover:bg-green-500 hover:text-white transition-all duration-300">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+        </svg>
+      </button>
+  
+      <!-- Slide indicators -->
+      <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+        <button *ngFor="let slide of carouselSlides; let i = index" 
+                (click)="goToSlide(i)"
+                [class]="'w-2 h-2 rounded-full transition-all duration-300 ' + (currentSlide === i ? 'bg-green-500 w-8' : 'bg-white hover:bg-green-300')">
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Categories section -->
+  <section class="py-12 px-4 md:px-8 bg-gray-50">
+    <h2 class="text-2xl md:text-3xl font-bold text-center mb-2">Featured Products</h2>
+    <p class="text-gray-600 text-center mb-8">
+      Explore our handpicked selection of premium furniture pieces
+    </p>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div *ngFor="let card of categoryCards" 
+           class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300 group">
+        <div class="relative overflow-hidden">
+          <img [src]="card.image" 
+               [alt]="card.alt" 
+               class="w-full h-64 object-cover transform group-hover:scale-110 transition-transform duration-500">
+          <div class="absolute top-0 right-0 bg-green-500 text-white px-4 py-2 rounded-bl-lg" *ngIf="card.oldPrice">
+            SALE
+          </div>
+        </div>
+        <div class="p-6">
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="text-xl font-semibold text-gray-800">{{ card.title }}</h3>
+            <div class="flex flex-col items-end">
+              <span class="text-2xl font-bold text-green-600">${{ card.price }}</span>
+              <span *ngIf="card.oldPrice" class="text-sm text-gray-500 line-through">${{ card.oldPrice }}</span>
+            </div>
+          </div>
+          <p class="text-gray-600 mb-4">{{ card.description }}</p>
+          
+          <!-- Rating -->
+          <div class="flex items-center mb-4">
+            <div class="flex text-yellow-400">
+              <svg *ngFor="let star of getRatingStars(card.rating)" class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+              </svg>
+              <svg *ngIf="getPartialStar(card.rating) > 0" class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" style="opacity: 0.5"/>
+              </svg>
+            </div>
+            <span class="ml-2 text-gray-600">{{ card.rating }}/5</span>
+          </div>
+  
+          <!-- Stock status and button -->
+          <div class="flex items-center justify-between">
+            <span [class]="card.inStock ? 'text-green-500' : 'text-red-500'">
+              {{ card.inStock ? 'In Stock' : 'Out of Stock' }}
+            </span>
+            <button [class]="'px-4 py-2 rounded-lg transition-all duration-300 ' + 
+                            (card.inStock ? 'bg-green-600 hover:bg-green-700 text-white' : 'bg-gray-300 cursor-not-allowed')"
+                    [disabled]="!card.inStock">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

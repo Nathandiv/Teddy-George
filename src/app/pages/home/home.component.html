@@ -58,51 +58,58 @@
     </p>
     
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <div *ngFor="let card of categoryCards" 
-           class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300 group">
-        <div class="relative overflow-hidden">
-          <img [src]="card.image" 
-               [alt]="card.alt" 
-               class="w-full h-64 object-cover transform group-hover:scale-110 transition-transform duration-500">
-          <div class="absolute top-0 right-0 bg-green-500 text-white px-4 py-2 rounded-bl-lg" *ngIf="card.oldPrice">
-            SALE
-          </div>
-        </div>
-        <div class="p-6">
-          <div class="flex justify-between items-start mb-2">
-            <h3 class="text-xl font-semibold text-gray-800">{{ card.title }}</h3>
-            <div class="flex flex-col items-end">
-              <span class="text-2xl font-bold text-green-600">${{ card.price }}</span>
-              <span *ngIf="card.oldPrice" class="text-sm text-gray-500 line-through">${{ card.oldPrice }}</span>
+        <div *ngFor="let card of categoryCards" 
+             class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300 group">
+          <div class="relative overflow-hidden">
+            <img [src]="card.image" 
+                 [alt]="card.alt" 
+                 class="w-full h-64 object-cover transform group-hover:scale-110 transition-transform duration-500">
+            <div class="absolute top-0 right-0 bg-green-500 text-white px-4 py-2 rounded-bl-lg" *ngIf="card.oldPrice">
+              SALE
             </div>
           </div>
-          <p class="text-gray-600 mb-4">{{ card.description }}</p>
-          
-          <!-- Rating -->
-          <div class="flex items-center mb-4">
-            <div class="flex text-yellow-400">
-              <svg *ngFor="let star of getRatingStars(card.rating)" class="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
-              </svg>
-              <svg *ngIf="getPartialStar(card.rating) > 0" class="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" style="opacity: 0.5"/>
-              </svg>
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="text-xl font-semibold text-gray-800">{{ card.title }}</h3>
+              <div class="flex flex-col items-end">
+                <span class="text-2xl font-bold text-green-600">
+                  {{ card.price | currency:'ZAR':'symbol':'1.2-2':'en-ZA' }}
+                </span>
+                <span *ngIf="card.oldPrice" class="text-sm text-gray-500 line-through">
+                  {{ card.oldPrice | currency:'ZAR':'symbol':'1.2-2':'en-ZA' }}
+                </span>
+              </div>
             </div>
-            <span class="ml-2 text-gray-600">{{ card.rating }}/5</span>
-          </div>
-  
-          <!-- Stock status and button -->
-          <div class="flex items-center justify-between">
-            <span [class]="card.inStock ? 'text-green-500' : 'text-red-500'">
-              {{ card.inStock ? 'In Stock' : 'Out of Stock' }}
-            </span>
-            <button [class]="'px-4 py-2 rounded-lg transition-all duration-300 ' + 
-                            (card.inStock ? 'bg-green-600 hover:bg-green-700 text-white' : 'bg-gray-300 cursor-not-allowed')"
-                    [disabled]="!card.inStock">
-              Add to Cart
-            </button>
+            <p class="text-gray-600 mb-4">{{ card.description }}</p>
+            
+            <!-- Rating -->
+            <div class="flex items-center mb-4">
+              <div class="flex text-yellow-400">
+                <svg *ngFor="let star of getRatingStars(card.rating)" class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                  <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                </svg>
+                <svg *ngIf="getPartialStar(card.rating) > 0" class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                  <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" style="opacity: 0.5"/>
+                </svg>
+              </div>
+              <span class="ml-2 text-gray-600">{{ card.rating }}/5</span>
+            </div>
+      
+            <!-- Stock status and button -->
+            <div class="flex items-center justify-between">
+              <span [class]="card.inStock ? 'text-green-500' : 'text-red-500'">
+                {{ card.inStock ? 'In Stock' : 'Out of Stock' }}
+              </span>
+              <button [class]="'px-4 py-2 rounded-lg transition-all duration-300 ' + 
+                              (card.inStock ? 'bg-green-600 hover:bg-green-700 text-white' : 'bg-gray-300 cursor-not-allowed')"
+                      [disabled]="!card.inStock">
+                Add to Cart
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+      
+
+    
   </section>
